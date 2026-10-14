@@ -213,29 +213,47 @@ body {
 
     <button class="bow-button" id="openButton"
       type="button" aria-label="Sciogli il fiocco e apri l'invito">
-      <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
-        <defs>
-          <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#a64e60"/>
-            <stop offset="48%" stop-color="#762d40"/>
-            <stop offset="100%" stop-color="#511b2a"/>
-          </linearGradient>
-        </defs>
-        <path d="M59 56 C43 44 19 25 14 39 C8 55 31 64 57 62
-                 C37 70 22 86 33 91 C45 96 56 74 62 62"
-          fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
-        <path d="M61 56 C77 44 101 25 106 39 C112 55 89 64 63 62
-                 C83 70 98 86 87 91 C75 96 64 74 58 62"
-          fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
-        <path d="M54 58 C49 78 45 94 40 106 L53 100 L59 109
-                 L64 67 Z" fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
-        <path d="M65 58 C71 77 77 91 85 101 L71 98 L66 107
-                 L59 66 Z" fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
-        <path d="M49 53 Q59 44 70 53 L72 64 Q60 74 48 64 Z"
-          fill="#87364a" stroke="#682538" stroke-width="1"/>
-        <path d="M54 54 Q60 50 65 54" fill="none"
-          stroke="#c7818b" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+
+<svg viewBox="0 0 140 140" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a64e60"/>
+      <stop offset="45%" stop-color="#843448"/>
+      <stop offset="100%" stop-color="#511b2a"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d18b98" stop-opacity=".65"/>
+      <stop offset="50%" stop-color="#fff" stop-opacity=".05"/>
+      <stop offset="100%" stop-color="#4c1725" stop-opacity=".3"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M64 62 C61 83 47 105 31 126 L49 120 L56 134 C64 108 70 83 72 65 Z"
+    fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+  <path d="M76 62 C80 83 95 105 111 126 L93 120 L87 134 C79 108 74 83 72 65 Z"
+    fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+
+  <path d="M61 69 C53 94 44 112 37 121"
+    fill="none" stroke="url(#shine)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M79 69 C87 94 98 112 105 121"
+    fill="none" stroke="url(#shine)" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M65 54 C48 42 19 19 12 35 C5 52 30 69 61 65 C68 64 70 59 65 54 Z"
+    fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+  <path d="M75 54 C92 42 121 19 128 35 C135 52 110 69 79 65 C72 64 70 59 75 54 Z"
+    fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+
+  <path d="M18 37 C28 32 44 45 58 56"
+    fill="none" stroke="url(#shine)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M122 37 C112 32 96 45 82 56"
+    fill="none" stroke="url(#shine)" stroke-width="3" stroke-linecap="round"/>
+
+  <path d="M59 49 Q70 42 81 49 L84 60 Q70 74 56 60 Z"
+    fill="url(#ribbon)" stroke="#682538" stroke-width="1.2"/>
+  <path d="M63 51 Q70 47 77 51"
+    fill="none" stroke="#d18b98" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
+
     </button>
   </div>
 
