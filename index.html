@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4eee4">
+<title>Linda vi aspetta!</title>
+<style>
+:root {
+  --ivory: #f5efe5;
+  --paper: #fffaf2;
+  --burgundy: #762d40;
+  --gold: #b19a70;
+  --ink: #38332f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+  background:
+    radial-gradient(ellipse at 50% 15%, #fffdf8, transparent 65%),
+    var(--ivory);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.scene {
+  width: min(100%, 390px);
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 22px;
+  color: #817363;
+  font: 10px/1.6 Arial, sans-serif;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: .82;
+  max-height: 490px;
+  perspective: 1400px;
+  isolation: isolate;
+}
+.inside {
+  position: absolute;
+  inset: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  background: var(--paper);
+  border: 1px solid #e4d7c3;
+  box-shadow: 0 18px 45px #6a4b3018;
+}
+.inside::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #c7b58f;
+  pointer-events: none;
+}
+.inside .date {
+  font: 10px/1.6 Arial, sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+}
+.inside h1 {
+  margin: 0;
+  color: var(--burgundy);
+  font-size: clamp(31px, 9vw, 43px);
+  font-weight: normal;
+  font-style: italic;
+  line-height: 1.12;
+}
+.rule {
+  width: 42px;
+  height: 1px;
+  background: var(--gold);
+  margin: 3px 0;
+}
+.inside .time {
+  margin: 0;
+  font-size: 25px;
+  font-weight: normal;
+}
+.inside .event {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.inside .address {
+  margin: 0;
+  font: 12px/1.6 Arial, sans-serif;
+  color: #76685a;
+}
+.inside .rsvp {
+  margin: 5px 0 0;
+  color: var(--burgundy);
+  font: 10px Arial, sans-serif;
+  letter-spacing: .22em;
+}
+.door {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(135deg, #fffaf2, #f0e5d4);
+  border: 1px solid #dfd0ba;
+  transition: transform 1.35s cubic-bezier(.2,.75,.2,1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.door.left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 0;
+}
+.door.right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 0;
+}
+.door::after {
+  content: "";
+  position: absolute;
+  inset: 10px 7px;
+  border: 1px solid #c8b58d;
+  pointer-events: none;
+}
+.book.open .door.left { transform: rotateY(-112deg); }
+.book.open .door.right { transform: rotateY(112deg); }
+.bow-button {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 116px;
+  height: 116px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .3s ease, transform .3s ease;
+}
+.bow-button:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 5px;
+}
+.bow-button svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 4px 3px #4b15201b);
+}
+.book.open .bow-button {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.7);
+}
+.hint {
+  margin: 25px 0 0;
+  font: 12px/1.6 Arial, sans-serif;
+  color: #786b5d;
+  letter-spacing: .04em;
+}
+.hint strong {
+  color: var(--burgundy);
+  font-weight: 600;
+}
+.signature {
+  margin-top: 28px;
+  font-size: 11px;
+  color: #a09584;
+  letter-spacing: .08em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .door, .bow-button { transition-duration: .01ms; }
+}
+</style>
+</head>
+<body>
+<main class="scene">
+  <p class="eyebrow">Un invito speciale</p>
+
+  <div class="book" id="book">
+    <div class="inside">
+      <div class="date">Sabato 31 ottobre 2026</div>
+      <h1>Linda vi aspetta!</h1>
+      <div class="rule"></div>
+      <p class="time">Ore 19:00</p>
+      <p class="event">Aperitivo in terrazza<br>e cena a casa di Fabio</p>
+      <p class="address">Via dei Banchi Nuovi 44</p>
+      <div class="rule"></div>
+      <p class="rsvp">RSVP</p>
+    </div>
+
+    <div class="door left" aria-hidden="true"></div>
+    <div class="door right" aria-hidden="true"></div>
+
+    <button class="bow-button" id="openButton"
+      type="button" aria-label="Sciogli il fiocco e apri l'invito">
+      <svg viewBox="0 0 120 120" role="img" aria-hidden="true">
+        <defs>
+          <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a64e60"/>
+            <stop offset="48%" stop-color="#762d40"/>
+            <stop offset="100%" stop-color="#511b2a"/>
+          </linearGradient>
+        </defs>
+        <path d="M59 56 C43 44 19 25 14 39 C8 55 31 64 57 62
+                 C37 70 22 86 33 91 C45 96 56 74 62 62"
+          fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+        <path d="M61 56 C77 44 101 25 106 39 C112 55 89 64 63 62
+                 C83 70 98 86 87 91 C75 96 64 74 58 62"
+          fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+        <path d="M54 58 C49 78 45 94 40 106 L53 100 L59 109
+                 L64 67 Z" fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+        <path d="M65 58 C71 77 77 91 85 101 L71 98 L66 107
+                 L59 66 Z" fill="url(#ribbon)" stroke="#682538" stroke-width="1"/>
+        <path d="M49 53 Q59 44 70 53 L72 64 Q60 74 48 64 Z"
+          fill="#87364a" stroke="#682538" stroke-width="1"/>
+        <path d="M54 54 Q60 50 65 54" fill="none"
+          stroke="#c7818b" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <p class="hint" id="hint">Tocca il <strong>fiocco</strong> per aprire l'invito</p>
+  <div class="signature">CON AFFETTO</div>
+</main>
+
+<script>
+const book = document.getElementById("book");
+const button = document.getElementById("openButton");
+const hint = document.getElementById("hint");
+
+button.addEventListener("click", () => {
+  book.classList.add("open");
+  button.setAttribute("aria-label", "Invito aperto");
+  hint.textContent = "Una giornata speciale da festeggiare insieme";
+});
+</script>
+</body>
+</html>
