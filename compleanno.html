@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5efe5">
+<title>Un invito speciale</title>
+
+<style>
+:root {
+  --ivory: #f5efe5;
+  --paper: #fffaf2;
+  --burgundy: #762d40;
+  --gold: #b19a70;
+  --ink: #38332f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 14px;
+  background:
+    radial-gradient(ellipse at 50% 12%, #fffdf8, transparent 65%),
+    var(--ivory);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.scene {
+  width: min(100%, 390px);
+  text-align: center;
+}
+
+.book {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.82;
+  perspective: 1400px;
+  isolation: isolate;
+}
+
+.inside {
+  position: absolute;
+  inset: 0;
+  padding: 25px 23px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid #e4d7c3;
+  box-shadow: 0 18px 45px #6a4b3018;
+}
+
+.inside::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #c7b58f;
+  pointer-events: none;
+}
+
+.date {
+  margin: 0;
+  color: var(--burgundy);
+  font: 10px/1.6 Arial, sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.inside h1 {
+  max-width: 100%;
+  margin: 0;
+  color: var(--burgundy);
+  font-size: clamp(25px, 7.2vw, 32px);
+  font-weight: normal;
+  font-style: italic;
+  line-height: 1.18;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.rule {
+  flex: 0 0 1px;
+  width: 42px;
+  height: 1px;
+  margin: 1px 0;
+  background: var(--gold);
+}
+
+.time {
+  margin: 0;
+  color: var(--ink);
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.event {
+  margin: 0;
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.address {
+  margin: 0;
+  color: #76685a;
+  font: 12px/1.65 Arial, sans-serif;
+  text-align: center;
+}
+
+.rsvp {
+  margin: 0;
+  color: var(--burgundy);
+  font: 10px/1.5 Arial, sans-serif;
+  letter-spacing: 0.22em;
+}
+
+.door {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(135deg, #fffaf2, #f0e5d4);
+  border: 1px solid #dfd0ba;
+  transition: transform 1.35s cubic-bezier(.2, .75, .2, 1);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.door.left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 0;
+}
+
+.door.right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 0;
+}
+
+.door::after {
+  content: "";
+  position: absolute;
+  inset: 10px 7px;
+  border: 1px solid #c8b58d;
+  pointer-events: none;
+}
+
+.book.open .door.left {
+  transform: rotateY(-112deg);
+}
+
+.book.open .door.right {
+  transform: rotateY(112deg);
+}
+
+.bow-button {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(64%, 250px);
+  aspect-ratio: 1.5;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+  animation: bow-float 3.6s ease-in-out infinite;
+}
+
+.bow-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px #4b152024);
+}
+
+.bow-button:focus-visible {
+  outline: 2px solid var(--burgundy);
+  outline-offset: 5px;
+}
+
+@keyframes bow-float {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-4px);
+  }
+}
+
+.book.open .bow-button {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.hint {
+  margin: 23px 0 0;
+  color: #786b5d;
+  font: 12px/1.6 Arial, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.hint strong {
+  color: var(--burgundy);
+  font-weight: 600;
+}
+
+@media (max-width: 360px) {
+  .inside {
+    padding: 22px 18px;
+    gap: 10px;
+  }
+
+  .inside h1 {
+    font-size: clamp(23px, 7vw, 27px);
+  }
+
+  .time {
+    font-size: 21px;
+  }
+
+  .event {
+    font-size: 13px;
+  }
+
+  .address {
+    font-size: 11px;
+  }
+
+  .hint {
+    margin-top: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .door,
+  .bow-button {
+    transition-duration: 0.01ms;
+  }
+
+  .bow-button {
+    animation: none;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="scene">
+  <div class="book" id="book">
+
+    <section class="inside" aria-label="Dettagli dell'invito">
+      <p class="date">Sabato 31 ottobre 2026</p>
+
+      <h1>Ti aspetto per festeggiare il mio compleanno</h1>
+
+      <div class="rule" aria-hidden="true"></div>
+
+      <p class="time">Ore 19:00</p>
+
+      <p class="event">Dall’aperitivo alla torta</p>
+
+      <p class="address">
+        Via dei Banchi Nuovi, 44<br>
+        Citofono Gianni
+      </p>
+
+      <div class="rule" aria-hidden="true"></div>
+
+      <p class="rsvp">RSVP</p>
+    </section>
+
+    <div class="door left" aria-hidden="true"></div>
+    <div class="door right" aria-hidden="true"></div>
+
+    <button
+      class="bow-button"
+      id="openButton"
+      type="button"
+      aria-label="Tocca il fiocco per aprire l'invito"
+      aria-controls="book"
+    >
+      <img
+        src="Fiocco%20di%20raso%20bordeaux%20trasparente-1.png"
+        alt=""
+        width="1536"
+        height="1024"
+        draggable="false"
+      >
+    </button>
+
+  </div>
+
+  <p class="hint" id="hint">
+    Tocca il <strong>fiocco</strong> per aprire l'invito
+  </p>
+</main>
+
+<script>
+const book = document.getElementById("book");
+const button = document.getElementById("openButton");
+const hint = document.getElementById("hint");
+
+button.addEventListener("click", () => {
+  if (book.classList.contains("open")) return;
+
+  book.classList.add("open");
+  button.setAttribute("aria-label", "Invito aperto");
+  hint.textContent = "";
+});
+</script>
+</body>
+</html>
